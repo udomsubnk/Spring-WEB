@@ -21,4 +21,8 @@ public class EmployeeService {
     public Employee findById(Integer id) {
         return employeeJpaRepository.findById(id);
     }
+
+    public void save(Employee employee) {
+        employeeJpaRepository.save(employee);
+    }
 }

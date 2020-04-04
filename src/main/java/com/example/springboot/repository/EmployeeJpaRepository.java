@@ -16,6 +16,8 @@ public class EmployeeJpaRepository {
 
     @Transactional
     public void save(Employee employee) {
+        // persist -> if there is 'id' in employee, it will update
+        // persist -> if there isn't 'id' in employee, it will insert
         entityManager.persist(employee);
     }
 
