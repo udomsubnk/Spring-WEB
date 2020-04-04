@@ -1,6 +1,8 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.domain.Employee;
+import com.example.springboot.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +14,15 @@ import java.util.List;
 @Controller
 public class EmployeeController {
 
+    @Autowired
+    private EmployeeService employeeService;
+
     // API
     @RequestMapping("/employees")
     // @ResponseBody is field mapper
     @ResponseBody
     public List<Employee> findAll() {
-        List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(new Employee("John", "Doe"));
-        employeeList.add(new Employee("Kao", "Jan"));
-        return employeeList;
+        return employeeService.listAllEmployees();
     }
 
     @RequestMapping("/employees/{id}")

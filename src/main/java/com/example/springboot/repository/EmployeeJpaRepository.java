@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class EmployeeJpaRepository {
@@ -16,5 +17,11 @@ public class EmployeeJpaRepository {
     @Transactional
     public void save(Employee employee) {
         entityManager.persist(employee);
+    }
+
+    public List<Employee> findAll() {
+        // query languale -> JPQL
+        // from Employee -> is Employee class name
+        return entityManager.createQuery("from Employee").getResultList();
     }
 }
