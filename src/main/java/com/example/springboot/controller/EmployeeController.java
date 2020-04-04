@@ -28,8 +28,7 @@ public class EmployeeController {
     @RequestMapping("/employees/{id}")
     @ResponseBody
     public Employee getEmployee(@PathVariable Integer id) {
-        System.out.println("id: " + id);
-        return new Employee("John", "Doe");
+        return employeeService.findById(id);
     }
 
 }

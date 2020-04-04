@@ -20,8 +20,12 @@ public class EmployeeJpaRepository {
     }
 
     public List<Employee> findAll() {
-        // query languale -> JPQL
+        // query language -> JPQL
         // from Employee -> is Employee class name
         return entityManager.createQuery("from Employee").getResultList();
+    }
+
+    public Employee findById(Integer id) {
+        return entityManager.find(Employee.class, id);
     }
 }

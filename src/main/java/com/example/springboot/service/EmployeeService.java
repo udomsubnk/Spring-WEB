@@ -17,4 +17,8 @@ public class EmployeeService {
     public List<Employee> listAllEmployees() {
         return employeeJpaRepository.findAll();
     }
+
+    public Employee findById(Integer id) {
+        return employeeJpaRepository.findById(id);
+    }
 }
