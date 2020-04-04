@@ -28,6 +28,7 @@ public class EmployeeService {
 
     public void update(Integer id, Employee employee) {
         Employee employeeEntity = findById(id);
+
         if (employeeEntity == null) {
             throw new RuntimeException("Not found data.");
         }
@@ -35,5 +36,15 @@ public class EmployeeService {
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
         employeeJpaRepository.save(employeeEntity);
+    }
+
+    public void delete(Integer id) {
+        Employee employeeEntity = findById(id);
+
+        if (employeeEntity == null) {
+            throw new RuntimeException("Not found data.");
+        }
+
+        employeeJpaRepository.delete(employeeEntity);
     }
 }

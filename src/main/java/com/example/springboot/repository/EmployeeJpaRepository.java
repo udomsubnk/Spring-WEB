@@ -30,4 +30,9 @@ public class EmployeeJpaRepository {
     public Employee findById(Integer id) {
         return entityManager.find(Employee.class, id);
     }
+
+    @Transactional
+    public void delete(Employee employee) {
+        entityManager.remove(employee);
+    }
 }
