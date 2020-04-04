@@ -29,4 +29,10 @@ public class EmployeeController {
         employeeService.save(employee);
         return employee;
     }
+
+    @PutMapping("/{id}")
+    public Employee update(@PathVariable Integer id, @RequestBody Employee employee) {
+        employeeService.update(id, employee);
+        return employee;
+    }
 }

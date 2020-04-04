@@ -25,4 +25,15 @@ public class EmployeeService {
     public void save(Employee employee) {
         employeeJpaRepository.save(employee);
     }
+
+    public void update(Integer id, Employee employee) {
+        Employee employeeEntity = findById(id);
+        if (employeeEntity == null) {
+            throw new RuntimeException("Not found data.");
+        }
+
+        employeeEntity.setFirstName(employee.getFirstName());
+        employeeEntity.setLastName(employee.getLastName());
+        employeeJpaRepository.save(employeeEntity);
+    }
 }
