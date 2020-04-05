@@ -29,6 +29,11 @@ public class EmployeeController {
         return employeeService.findByFirstName(firstName);
     }
 
+    @GetMapping("/nativeQuery")
+    public List<Employee> getEmployees() {
+        return employeeService.findByNativeQuery();
+    }
+
     @PostMapping
     public Employee create(@RequestBody Employee employee) {
         employeeService.save(employee);

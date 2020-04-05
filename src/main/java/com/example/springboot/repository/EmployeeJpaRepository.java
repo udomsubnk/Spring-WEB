@@ -42,4 +42,9 @@ public class EmployeeJpaRepository {
         query.setParameter("FIRST_NAME", firstName);
         return query.getResultList();
     }
+
+    public List<Employee> findByNativeQuery() {
+        Query query = entityManager.createNativeQuery("SELECT * FROM EMPLOYEE", Employee.class);
+        return query.getResultList();
+    }
 }
