@@ -47,4 +47,8 @@ public class EmployeeService {
 
         employeeJpaRepository.delete(employeeEntity);
     }
+
+    public List<Employee> findByFirstName(String firstName) {
+        return employeeJpaRepository.findByFirstName(firstName);
+    }
 }

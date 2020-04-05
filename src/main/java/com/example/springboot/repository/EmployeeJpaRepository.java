@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -34,5 +35,11 @@ public class EmployeeJpaRepository {
     @Transactional
     public void delete(Employee employee) {
         entityManager.remove(employee);
+    }
+
+    public List<Employee> findByFirstName(String firstName) {
+        Query query = entityManager.createQuery("from Employee t where t.firstName =: FIRST_NAME");
+        query.setParameter("FIRST_NAME", firstName);
+        return query.getResultList();
     }
 }

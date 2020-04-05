@@ -20,8 +20,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee getEmployee(@PathVariable Integer id) {
+    public Employee getEmployees(@PathVariable Integer id) {
         return employeeService.findById(id);
+    }
+
+    @GetMapping("/firstName/{firstName}")
+    public List<Employee> getEmployeesByFirstName(@PathVariable String firstName) {
+        return employeeService.findByFirstName(firstName);
     }
 
     @PostMapping
