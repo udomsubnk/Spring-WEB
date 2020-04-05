@@ -1,13 +1,14 @@
 package com.example.springboot.service;
 
-
 import com.example.springboot.domain.Employee;
 import com.example.springboot.exception.UnprocessableException;
 import com.example.springboot.repository.EmployeeJpaRepository;
 import com.example.springboot.repository.EmployeeRepository;
+import com.example.springboot.repository.LogRepository;
 import com.example.springboot.response.EmployeeReportResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,15 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    LogRepository logRepository;
+
+    @Transactional
+    public void doSomeThing() {
+        logRepository.save(); // always save success
+        employeeRepository.save(new Employee()); //only one rolled back execution
+        throw new RuntimeException("force exception.");
+    }
 
     public List<Employee> listAllEmployees() {
         return employeeRepository.findAll();
