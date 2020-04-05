@@ -2,6 +2,7 @@ package com.example.springboot.service;
 
 
 import com.example.springboot.domain.Employee;
+import com.example.springboot.exception.UnprocessableException;
 import com.example.springboot.repository.EmployeeJpaRepository;
 import com.example.springboot.repository.EmployeeRepository;
 import com.example.springboot.response.EmployeeReportResponse;
@@ -25,7 +26,7 @@ public class EmployeeService {
     }
 
     public Employee findById(Integer id) {
-        return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Data not found."));
+        return employeeRepository.findById(id).orElseThrow(() -> new UnprocessableException("not found employee..."));
     }
 
     public void save(Employee employee) {
