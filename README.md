@@ -1,0 +1,1 @@
+SET ENV = '--spring.profiles.active=__ENV NAME__'
