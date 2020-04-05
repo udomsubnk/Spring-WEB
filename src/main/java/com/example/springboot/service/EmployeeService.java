@@ -3,6 +3,7 @@ package com.example.springboot.service;
 
 import com.example.springboot.domain.Employee;
 import com.example.springboot.repository.EmployeeJpaRepository;
+import com.example.springboot.response.EmployeeReportResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,7 @@ public class EmployeeService {
         return employeeJpaRepository.findByFirstName(firstName);
     }
 
-    public List<Employee> findByNativeQuery() {
+    public List<EmployeeReportResponse> findByNativeQuery() {
         return employeeJpaRepository.findByNativeQuery();
     }
 }

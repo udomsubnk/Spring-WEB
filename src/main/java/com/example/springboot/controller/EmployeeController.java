@@ -1,6 +1,7 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.domain.Employee;
+import com.example.springboot.response.EmployeeReportResponse;
 import com.example.springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/nativeQuery")
-    public List<Employee> getEmployees() {
+    public List<EmployeeReportResponse> getEmployees() {
         return employeeService.findByNativeQuery();
     }
 

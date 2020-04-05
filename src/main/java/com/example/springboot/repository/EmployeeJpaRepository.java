@@ -1,6 +1,7 @@
 package com.example.springboot.repository;
 
 import com.example.springboot.domain.Employee;
+import com.example.springboot.response.EmployeeReportResponse;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,8 +44,10 @@ public class EmployeeJpaRepository {
         return query.getResultList();
     }
 
-    public List<Employee> findByNativeQuery() {
-        Query query = entityManager.createNativeQuery("SELECT * FROM EMPLOYEE", Employee.class);
+    public List<EmployeeReportResponse> findByNativeQuery() {
+        // Not exactly match Employee class
+        String querySchema = "SELECT e.id as ID, e.first_name as FIRST_NAME, e.last_name as LAST_NAME, 'IT' as DEPARTMENT FROM EMPLOYEE e";
+        Query query = entityManager.createNativeQuery(querySchema, EmployeeReportResponse.class);
         return query.getResultList();
     }
 }
