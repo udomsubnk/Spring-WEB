@@ -14,17 +14,18 @@ import java.util.List;
 public class EmployeeService {
 
     @Autowired
-    private EmployeeJpaRepository employeeJpaRepository;
+   private EmployeeJpaRepository employeeJpaRepository;
 
     @Autowired
     EmployeeRepository employeeRepository;
+
 
     public List<Employee> listAllEmployees() {
         return employeeRepository.findAll();
     }
 
     public Employee findById(Integer id) {
-        return employeeJpaRepository.findById(id);
+        return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Data not found."));
     }
 
     public void save(Employee employee) {
@@ -32,24 +33,14 @@ public class EmployeeService {
     }
 
     public void update(Integer id, Employee employee) {
-        Employee employeeEntity = findById(id);
-
-        if (employeeEntity == null) {
-            throw new RuntimeException("Not found data.");
-        }
-
+        Employee employeeEntity = this.findById(id);
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
         employeeJpaRepository.save(employeeEntity);
     }
 
     public void delete(Integer id) {
-        Employee employeeEntity = findById(id);
-
-        if (employeeEntity == null) {
-            throw new RuntimeException("Not found data.");
-        }
-
+        Employee employeeEntity = this.findById(id);
         employeeJpaRepository.delete(employeeEntity);
     }
 
